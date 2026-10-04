@@ -1,0 +1,6 @@
+{
+  "name": "Grok Voice Agent Web Client",
+  "description": "صفحه وب گفتگوی زنده صوتی با عامل‌های صوتی هوش مصنوعی Grok Voice API با ارتباط دوطرفه میکروفون و صدا",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
