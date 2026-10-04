@@ -10,6 +10,7 @@ import { AudioVisualizerBar } from './components/AudioVisualizerBar';
 import { TranscriptView } from './components/TranscriptView';
 import { EventInspectorModal } from './components/EventInspectorModal';
 import { ArchitectureGuideModal } from './components/ArchitectureGuideModal';
+import { DeploymentGuideModal } from './components/DeploymentGuideModal';
 import { SettingsDrawer } from './components/SettingsDrawer';
 import { AgentConfig, ServerConfigStatus } from './types/grok';
 import {
@@ -27,6 +28,7 @@ import {
   Info,
   CheckCircle2,
   HelpCircle,
+  UploadCloud,
 } from 'lucide-react';
 
 export default function App() {
@@ -42,6 +44,7 @@ export default function App() {
   const [textInput, setTextInput] = useState('');
   const [isInspectorOpen, setIsInspectorOpen] = useState(false);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
+  const [isDeploymentOpen, setIsDeploymentOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   // Fetch server status on initial load
@@ -140,6 +143,16 @@ export default function App() {
             </span>
           </div>
 
+          {/* Deploy Guide Button */}
+          <button
+            onClick={() => setIsDeploymentOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-200 text-xs font-medium border border-emerald-700/60 shadow-sm transition-all"
+            title="راهنمای استقرار و دپلوی روی سرور"
+          >
+            <UploadCloud className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="hidden sm:inline">دپلوی روی سرور</span>
+          </button>
+
           {/* Architecture Guide Button */}
           <button
             onClick={() => setIsGuideOpen(true)}
@@ -197,10 +210,10 @@ export default function App() {
         </div>
         <div className="flex items-center gap-3">
           <button
-            onClick={() => setIsGuideOpen(true)}
-            className="text-cyan-400 hover:underline flex items-center gap-1 font-medium"
+            onClick={() => setIsDeploymentOpen(true)}
+            className="text-emerald-400 hover:underline flex items-center gap-1 font-medium"
           >
-            <span>چگونه این وب‌کلاینت را روی سرور خودتان اجرا کنید؟</span>
+            <span>چگونه این پروژه را روی سرور خودتان دپلوی کنید؟</span>
             <HelpCircle className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -353,6 +366,11 @@ export default function App() {
         isOpen={isGuideOpen}
         onClose={() => setIsGuideOpen(false)}
         currentAgentId={config.agentId}
+      />
+
+      <DeploymentGuideModal
+        isOpen={isDeploymentOpen}
+        onClose={() => setIsDeploymentOpen(false)}
       />
 
       <SettingsDrawer
